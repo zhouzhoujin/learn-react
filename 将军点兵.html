@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="react.production.min.js"></script>
+    <script src="react-dom.production.min.js"></script>
+    <script src="browser.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    class King extends React.Component{
+        constructor(props){
+            super(props),
+            this.state = {
+                soildern:100
+            }
+            this.askF = this.askF.bind(this)
+        }
+        askF(){
+            this.setState({
+                soildern:this.state.soildern-10
+            })
+        }
+        render(){
+            return(
+                <div>
+                    <p>国王兵数：{this.state.soildern}</p>
+                    <Gen give={this.askF} soildern={100}></Gen>
+                </div>
+            )
+        }
+    }
+    class Gen extends React.Component{
+        constructor(props){
+            super(props),
+            this.state={
+                soildern:this.props.soildern
+            }
+            this.ask = this.ask.bind(this)
+        }
+        ask(){
+            this.setState({
+                soildern:this.state.soildern+10
+            }) 
+             this.props.give()
+        }
+      
+
+        render(){
+            return(
+                <div>
+                <p>将军兵数：{this.state.soildern}</p>
+                <button onClick={this.ask}>调兵</button>
+                </div>
+
+            )
+        }
+    }
+   
+    ReactDOM.render(
+        <King/>,
+        document.getElementById('root')
+    )
+    
+    
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="react.production.min.js"></script>
+    <script src="react-dom.production.min.js"></script>
+    <script src="browser.min.js"></script>
+    <style>
+        .dia-bg{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3)
+        }
+        .dia-content{
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -100px;
+            background: white;
+        }
+        header{
+            background: black;
+            color: aliceblue;
+            width: 100%;
+            height: 40px;
+        }
+        header div:nth-child(1){
+            float: left;
+        }
+        header div:nth-child(2){
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    class One extends React.Component{
+        constructor(props){
+            super(props),
+            this.state = {
+
+            }
+        }
+        render(){
+            return(
+                  <div>
+                  <Two>
+                    <button>登录</button>
+                    <button>注册</button>
+                  </Two>    
+                  <Three></Three>       
+            </div>
+            )
+          
+        }
+    }
+     function Two(props){
+         return(
+             <div >
+                {props.children}
+             </div>
+         )
+    }
+    function Three(props){
+        return(
+            <div className="dia-bg">
+                <div className="dia-content">
+                    <header>
+                        <div>登录</div>
+                        <div>X</div>
+                    </header>
+                </div>
+            </div>    
+        )
+    }
+    ReactDOM.render(
+        <One/>,
+        document.getElementById("root")
+    )  
+    </script>
+    
+</body>
+</html>
