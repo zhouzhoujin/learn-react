@@ -15,7 +15,8 @@
             top: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.3)
+            background: rgba(0,0,0,0.3);
+            display: none;
         }
         .dia-content{
             width: 300px;
@@ -35,9 +36,11 @@
         }
         header div:nth-child(1){
             float: left;
+            margin: 5px;
         }
         header div:nth-child(2){
             float: right;
+            margin: 5px;
         }
     </style>
 </head>
@@ -48,17 +51,30 @@
         constructor(props){
             super(props),
             this.state = {
-
+                isShow:false,
+                type:'',
             }
+            this.closeC = this.closeC.bind(this)
+        }
+        open(type){
+            this.setState({
+          type:type,
+          isShow:true
+        })
+        }
+        closeC(){
+            this.setState({
+                isShow:false
+            })
         }
         render(){
             return(
                   <div>
                   <Two>
-                    <button>登录</button>
-                    <button>注册</button>
+                    <button onClick={this.open.bind(this,'登录')}>登录</button>
+                    <button onClick={this.open.bind(this,'注册')}>注册</button>
                   </Two>    
-                  <Three></Three>       
+                  <Three closef={this.closeC}isShow={this.state.isShow} title={this.state.type}></Three>       
             </div>
             )
           
@@ -72,15 +88,39 @@
          )
     }
     function Three(props){
+        /*let content = null; 三种方式条件渲染
+            if (props.title == '登录') {
+                content = <Login/>
+            }else{
+                content = <Siginup/>
+                {content}1 放在header下面
+                {props.title =='登录' ? <Login/>:<Siginup/>}  2
+                {props.title == '登录' && <Login/>}
+                {props.title == '注册' && <Siginup/>}3
+            }*/
+    
         return(
-            <div className="dia-bg">
+            <div className="dia-bg" style={{display:props.isShow?'block':'none'}}>
                 <div className="dia-content">
                     <header>
-                        <div>登录</div>
-                        <div>X</div>
+                        <div>{props.title}</div>
+                        <div onClick={props.closef}>X</div>
                     </header>
+                   
+                               
                 </div>
             </div>    
+        )
+    }
+        
+    function Login(){
+        return(
+            <h1>登录</h1>
+        )
+    }
+    function Siginup(){
+        return(
+            <h1>注册</h1>
         )
     }
     ReactDOM.render(
