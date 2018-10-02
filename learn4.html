@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="react.production.min.js"></script>
+    <script src="react-dom.production.min.js"></script>
+    <script src="browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+        <style>
+            .title{
+                background: black;
+                color: aliceblue;
+            }
+            .table{
+                margin: 20px 0;
+            }
+        
+        </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    
+    class InputForm extends React.Component{
+        constructor(props){
+            super(props),
+            this.state = {
+
+            }
+        }
+        render(){
+            return(
+                <div class="text-center">
+                    <h1>TodoList</h1>   
+                    <hr></hr>
+                     <form className="form-inline add-form" >
+                        <div className="form-group">
+                            <label htmlfor="product-name">待办事项</label>
+                            <input  type="text" className="form-control" id="product-name" placeholder="待办事项"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlfor="product-price">待办时间</label>
+                            <input  type="date" className="form-control" id="product-price" placeholder="年/月/日"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlfor="product-price">预计用时</label>
+                            <input  type="text" className="form-control" id="product-price" placeholder="预计用时"/>
+                        </div>
+                        <button  type="submit" className="btn btn-primary">添加</button>
+                    </form>
+                    <TableText/>            
+                </div>
+           
+                )
+        }
+    }
+    class TableText extends React.Component{
+        constructor(props){
+            super(props),
+            this.state = {
+
+            }
+        }
+        render(){
+            return(
+                <div>
+                    <table className="table">
+                        <thead>
+                            <tr className="title">
+                                <td>#</td>
+                                <td>待办事项</td>
+                                <td>待办时间</td>
+                                <td>预计用时</td>
+                                <td>删除</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input  type="checkbox" />
+                                </td>
+                                    <td>{1}</td>
+                                    <td>{2}</td>
+                                    <td>{3}</td>
+                                    <td>
+                                        <button  type="button" class="btn btn-primary btn-sm">删除</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button  type="button" class="btn btn-primary">删除选中</button>
+                                    </td>
+                                    <td colspan="4">
+                                        总共用时：{0} 
+                                    </td>
+                                 </tr>
+                         </tbody>
+                    </table>
+                </div>
+            )
+        }
+    }
+   
+   
+    ReactDOM.render(
+        <InputForm/> ,
+        document.getElementById('root')
+    )
+    
+    
+    </script>
+
+    
+</body>
+</html>
